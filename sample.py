@@ -4,7 +4,7 @@ import torch
 from tqdm import tqdm
 from lit_gpt.model_cache import GPTCache, Config
 from safetensors.torch import load_file
-from deepspeed.utils.zero_to_fp32 import get_fp32_state_dict_from_zero_checkpoint
+#from deepspeed.utils.zero_to_fp32 import get_fp32_state_dict_from_zero_checkpoint
 from sft.datasets.dataset import Sample_Dataset
 import os
 from tqdm import tqdm
