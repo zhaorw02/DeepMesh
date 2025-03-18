@@ -60,7 +60,6 @@ conda activate deepmesh
 ```
 pip install -U "huggingface_hub[cli]"
 huggingface-cli login
-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
 huggingface-cli download zrw/DeepMesh --local-dir ./
 ```
 
