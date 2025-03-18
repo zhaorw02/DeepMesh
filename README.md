@@ -70,7 +70,7 @@ huggingface-cli download zrw/DeepMesh --local-dir ./
 # The file format should be a .npy file with shape (N, 6), where N is the number of points. The first 3 columns are the coordinates, and the last 3 columns are the normal.
 
 # Generate all obj/ply in your folder
-python sample.py \
+CUDA_VISIBLE_DEVICES=6 torchrun --nproc-per-node=1 --master_port=12349 sample.py \
     --model_path "your_model_path" \
     --steps 90000 \
     --input_path examples \
@@ -79,7 +79,7 @@ python sample.py \
     --temperature 0.5 \
 
 # Generate the specified obj/ply in your folder
-python sample.py \
+CUDA_VISIBLE_DEVICES=6 torchrun --nproc-per-node=1 --master_port=12349.py \
     --model_path "your_model_path" \
     --steps 90000 \
     --input_path examples \
