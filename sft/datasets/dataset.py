@@ -15,7 +15,7 @@ def sample_pc(verts, faces, pc_num, with_normal=False):
         return points
     points, face_idx = mesh.sample(50000, return_index=True)
     normals = mesh.face_normals[face_idx]
-    pc_normal = np.concatenate([points, normals], axis=-1, dtype=np.float16)
+    pc_normal = np.concatenate([points[:,[2,0,1]], normals[:,[2,0,1]]], axis=-1, dtype=np.float16)
     # random sample point cloud
     ind = np.random.choice(pc_normal.shape[0], pc_num, replace=False)
     pc_normal = pc_normal[ind]
