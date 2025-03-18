@@ -56,8 +56,8 @@ def codes2mesh(codes,end_ui,output_path,local_rank,i):
     mesh.export(f'{output_path}/{local_rank}_{i}_mesh_{end}.obj')
 
 @ torch.no_grad()
-def ar_sample_kvcache(gpt, prompt, pc, temperature=1., \
-                        context_length=7000, window_size=1000,device='cuda',\
+def ar_sample_kvcache(gpt, prompt, pc, temperature=0.5, \
+                        context_length=90000, window_size=9000,device='cuda',\
                         output_path=None,local_rank=None,i=None):
     gpt.eval()
     N        = prompt.shape[0]
