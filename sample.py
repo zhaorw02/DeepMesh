@@ -155,7 +155,7 @@ def get_model_answers(
     if model_path.split(".")[-1]=="safetensors":
         loaded_state = load_file(model_path)
     elif model_path.split(".")[-1]=="bin":
-        loaded_state = torch.load(model_path, map_location='cpu')
+        loaded_state = torch.load(model_path, map_location='cpu',weights_only=False)
     else:
         loaded_state = get_fp32_state_dict_from_zero_checkpoint(model_path)
     model.load_state_dict(loaded_state, strict=False)
