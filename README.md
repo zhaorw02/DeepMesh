@@ -52,7 +52,7 @@
 Our environment has been tested on Ubuntu 22, CUDA 11.8 with A100, A800 and A6000.
 1. Clone our repo and create conda environment
 ```
-git clone  && cd DeepMesh
+git clone https://github.com/zhaorw02/DeepMesh.git && cd DeepMesh
 conda env create -f environment.yaml
 conda activate deepmesh
 ```
