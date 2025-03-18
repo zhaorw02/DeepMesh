@@ -41,7 +41,6 @@
 
 ## Contents
 - [Release](#release)
-- [Contents](#contents)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Important Notes](#important-notes)
