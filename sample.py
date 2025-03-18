@@ -8,6 +8,7 @@ from safetensors.torch import load_file
 from sft.datasets.dataset import Sample_Dataset
 import os
 from tqdm import tqdm
+import trimesh
 from sft.datasets.serializaiton import BPT_deserialize
 from sft.datasets.data_utils import to_mesh
 import numpy as np
@@ -167,6 +168,11 @@ def get_model_answers(
     while True:
         for i, test_batch in tqdm(enumerate(train_dataloader)):
             cond_pc = test_batch['pc_normal'].to('cuda')
+            
+            points = cond_pc[0].cpu().numpy()
+            point_cloud = trimesh.points.PointCloud(points[..., 0:3])
+            point_cloud.export(f'{output_path}/{local_rank}_{i}_pc.ply')
+            
             output_ids, _ = ar_sample_kvcache(model,
                                     prompt = torch.tensor([[4736]]).to('cuda').repeat(repeat_num,1),
                                     pc = cond_pc.repeat(repeat_num,1,1),
