@@ -9,7 +9,7 @@ from sft.datasets.dataset import Sample_Dataset
 import os
 from tqdm import tqdm
 import trimesh
-from sft.datasets.serializaiton import BPT_deserialize
+from sft.datasets.serializaiton import Improve_BPT_deserialize
 from sft.datasets.data_utils import to_mesh
 import numpy as np
 from torch import is_tensor
@@ -47,7 +47,7 @@ def codes2mesh(codes,end_ui,output_path,local_rank,i):
     
     code_ = copy.deepcopy(code)
     end = min( end_ui*1000,len(code_) )
-    vertices = BPT_deserialize(code_[:end])
+    vertices = Improve_BPT_deserialize(code_[:end])
     if len(vertices) == 0:
         1/0
     vertices = vertices[..., [2, 1, 0]]
@@ -188,7 +188,7 @@ def get_model_answers(
                     code = code[:index[0, 0].item()].cpu().numpy().astype(np.int64)
                 else:
                     code = code.cpu()
-                vertices = BPT_deserialize(code)
+                vertices = Improve_BPT_deserialize(code)
                 if len(vertices) == 0:
                     print("you got:",len(vertices))
                     continue
