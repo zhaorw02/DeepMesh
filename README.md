@@ -2,9 +2,9 @@
   <h3 align="center"><strong>DeepMesh: Auto-Regressive Artist-Mesh Creation<br>With Reinforcement Learning</strong></h3>
 
 <p align="center">
-    <a href="https://zhaorw02.github.io/">Ruowen Zhao</a><sup>1*</sup>,
-    <a href="https://jamesyjl.github.io/">Junliang Ye</a><sup>1*</sup>,
-    <a href="https://thuwzy.github.io/">Zhengyi Wang</a><sup>1*</sup>,<br>
+    <a href="https://zhaorw02.github.io/">Ruowen Zhao</a><sup>1,2*</sup>,
+    <a href="https://jamesyjl.github.io/">Junliang Ye</a><sup>1,2*</sup>,
+    <a href="https://thuwzy.github.io/">Zhengyi Wang</a><sup>1,2*</sup>,<br>
     <a href="">Guangce Liu</a><sup>2</sup>,
     <a href="https://buaacyw.github.io/">Yiwen Chen</a><sup>3</sup>,
     <a href="https://yikaiw.github.io/">Yikai Wang</a><sup>1</sup>
