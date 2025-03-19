@@ -7,8 +7,8 @@
     <a href="https://thuwzy.github.io/">Zhengyi Wang</a><sup>1,2*</sup>,<br>
     <a href="">Guangce Liu</a><sup>2</sup>,
     <a href="https://buaacyw.github.io/">Yiwen Chen</a><sup>3</sup>,
-    <a href="https://yikaiw.github.io/">Yikai Wang</a><sup>1</sup>
-    <a href="https://ml.cs.tsinghua.edu.cn/~jun/index.shtml">Jun Zhu</a><sup>1,2†</sup>,
+    <a href="https://yikaiw.github.io/">Yikai Wang</a><sup>1</sup>,
+    <a href="https://ml.cs.tsinghua.edu.cn/~jun/index.shtml">Jun Zhu</a><sup>1,2†</sup>
     <br>
     <sup>*</sup>Equal Contribution.
     <br>
