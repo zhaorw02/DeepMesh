@@ -91,8 +91,6 @@ CUDA_VISIBLE_DEVICES=0 torchrun --nproc-per-node=1 --master_port=22345.py \
 ## Important Notes
 - Please refer to our [project_page](https://zhaorw02.github.io/DeepMesh/) for more examples.
 ## Todo
-
-The repo is still being under construction, thanks for your patience. 
 - [ ] Release of pre-training code  ( truncted sliding training ).
 - [ ] Release of post-training code ( DPO ).
 - [ ] Release of larger model ( 1b version ).
