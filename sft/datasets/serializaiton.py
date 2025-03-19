@@ -86,18 +86,7 @@ def patchified_mesh(mesh: trimesh.Trimesh, special_token = -2, fix_orient=True):
     assert sum(degrees) == 0, 'All degrees should be zero'
 
     return np.array(sequence)
-    '''
-    array([[-0.9453125, -0.3203125, -0.2265625],
-       [-0.9453125, -0.3203125, -0.3203125],
-       [-0.9296875, -0.3203125, -0.3203125],
-       ...,
-       [ 0.9453125,  0.3203125,  0.3203125],
-       [ 0.9453125,  0.3203125,  0.2265625],
-       [-2.       , -2.       , -2.       ]])
-    '''
-
-
-
+    
 def get_block_representation(
         sequence, 
         patch_size=4,
@@ -177,9 +166,7 @@ def get_block_representation(
     
 
 
-def BPT_serialize(mesh: trimesh.Trimesh):
-    # serialize mesh with BPT
-
+def Improve_BPT_serialize(mesh: trimesh.Trimesh):
     # 1. patchify faces into patches
     sequence = patchified_mesh(mesh, special_token=-2)
     
@@ -240,7 +227,7 @@ def decode_block(sequence, compressed=True, patch_size=4, block_size=8, offset_s
     return coords
 
 
-def BPT_deserialize(sequence, patch_size=4, block_size=8, offset_size=16, compressed=True, special_token=-2, use_special_block=True):
+def Improve_BPT_deserialize(sequence, patch_size=4, block_size=8, offset_size=16, compressed=True, special_token=-2, use_special_block=True):
     # decode codes back to coordinates
    
     special_block_base = block_size**3 + offset_size**3 + patch_size**3
@@ -269,34 +256,3 @@ def BPT_deserialize(sequence, patch_size=4, block_size=8, offset_size=16, compre
 
     # (nf, 3)
     return np.concatenate(vertices, axis=0) 
-
-
-if __name__ == '__main__':
-    # a simple demo for serialize and deserialize mesh with bpt
-    from data_utils import load_process_mesh, to_mesh
-    import torch
-    import glob
-    import os
-    # folder_path ="/mnt/vepfs/group3d/zhaoruowen/meshtron_try2/gt_10"
-    # obj_files = glob.glob(os.path.join(folder_path, '*.obj'))
-    # for obj_file in obj_files:
-    #     mesh = load_process_mesh(obj_file, quantization_bits=10)
-    #     mesh['faces'] = np.array(mesh['faces'])
-    #     mesh = to_mesh(mesh['vertices'], mesh['faces'], transpose=True)
-    #     mesh.export('gt.obj')
-    #     codes = BPT_serialize(mesh)
-    #     print(len(codes))
-    #     coordinates = BPT_deserialize(codes, patch_size=4, block_size=8, offset_size=16)
-    #     faces = torch.arange(1, len(coordinates) + 1).view(-1, 3)
-    #     mesh = to_mesh(coordinates, faces, transpose=False, post_process=False)
-    #     mesh.export('reconstructed.obj')  
-    mesh = load_process_mesh("/mnt/vepfs/group3d/zhaoruowen/meshtron_try2/gt/10_mesh.obj", quantization_bits=10)
-    mesh['faces'] = np.array(mesh['faces'])
-    mesh = to_mesh(mesh['vertices'], mesh['faces'], transpose=True)
-    # mesh.export('gt.obj')
-    codes = BPT_serialize(mesh)
-    print(len(codes))
-    coordinates = BPT_deserialize(codes, patch_size=4, block_size=8, offset_size=16)
-    faces = torch.arange(1, len(coordinates) + 1).view(-1, 3)
-    mesh = to_mesh(coordinates, faces, transpose=False, post_process=False)
-    mesh.export('reconstruct.obj') 
