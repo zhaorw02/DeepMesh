@@ -1,3 +1,6 @@
+'''
+ * Adapted from BPT (https://github.com/whaohan/bpt)
+'''
 import trimesh
 import numpy as np
 from .data_utils import discretize, undiscretize
