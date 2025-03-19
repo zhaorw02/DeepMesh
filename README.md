@@ -89,7 +89,7 @@ CUDA_VISIBLE_DEVICES=0 torchrun --nproc-per-node=1 --master_port=22345.py \
     --temperature 0.5 \
 ```
 ## Important Notes
-- Please refer to todo for more examples.
+- Please refer to our [project_page](https://zhaorw02.github.io/DeepMesh/) for more examples.
 ## Todo
 
 The repo is still being under construction, thanks for your patience. 
