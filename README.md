@@ -33,7 +33,7 @@
 
 <div align="center">
 
-<img src="asserts/teaser.png" alt="Demo" width="1024px" />
+<img src="assets/teaser.png" alt="Demo" width="1024px" />
 
 </div>
 
