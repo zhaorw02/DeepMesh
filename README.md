@@ -99,6 +99,7 @@ CUDA_VISIBLE_DEVICES=0 torchrun --nproc-per-node=1 --master_port=22345.py \
 Our code is based on these wonderful repos:
 * **[BPT](https://github.com/whaohan/bpt)**
 * **[LLaMA-Mesh](https://github.com/nv-tlabs/LLaMa-Mesh)**
+* **[[SMDM]](https://github.com/ML-GSAI/SMDM)**
 * [Meshanything V2](https://github.com/buaacyw/MeshAnythingV2/tree/main)
 * [Michelangelo](https://github.com/NeuralCarver/Michelangelo)
 * [transformers](https://github.com/huggingface/transformers)
