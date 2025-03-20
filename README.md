@@ -87,6 +87,9 @@ CUDA_VISIBLE_DEVICES=0 torchrun --nproc-per-node=1 --master_port=22345.py \
     --repeat_num 4 \
     --uid_list "wand1.obj,wand2.obj,wand3.ply" \
     --temperature 0.5 \
+
+# Or
+bash sample.sh
 ```
 ## Important Notes
 - Please refer to our [project_page](https://zhaorw02.github.io/DeepMesh/) for more examples.
