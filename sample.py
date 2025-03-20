@@ -9,7 +9,7 @@ from sft.datasets.dataset import Sample_Dataset
 import os
 from tqdm import tqdm
 import trimesh
-from sft.datasets.serializaiton import Improve_BPT_deserialize
+from sft.datasets.serializaiton import deserialize
 from sft.datasets.data_utils import to_mesh
 import numpy as np
 from torch import is_tensor
@@ -165,7 +165,7 @@ def get_model_answers(
                     code = code[:index[0, 0].item()].cpu().numpy().astype(np.int64)
                 else:
                     code = code.cpu()
-                vertices = Improve_BPT_deserialize(code)
+                vertices = deserialize(code)
                 if len(vertices) == 0:
                     print("you got:",len(vertices))
                     continue
