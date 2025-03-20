@@ -34,7 +34,7 @@ class Sample_Dataset(torch.utils.data.Dataset):
         self.point_num    = point_num
         self.path         = path
         name              = os.listdir(path)
-        if len(uid_list) == 0:
+        if uid_list == [""]:
             self.uid_list     = [i for i in name if len(i.split("."))>1]
         else:
             self.uid_list    = uid_list
