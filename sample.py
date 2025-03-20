@@ -35,27 +35,6 @@ def add_gumbel_noise(logits, temperature):
     gumbel_noise = (- torch.log(noise)) ** temperature
     return logits.exp() / gumbel_noise
 
-def codes2mesh(codes,end_ui,output_path,local_rank,i):
-    code = codes[0][1:]
-    
-    index = (code >= 4737).nonzero()
-
-    if index.numel() > 0:
-        code = code[:index[0, 0].item()].cpu().numpy().astype(np.int64)
-    else:
-        code = code.cpu()
-    
-    code_ = copy.deepcopy(code)
-    end = min( end_ui*1000,len(code_) )
-    vertices = Improve_BPT_deserialize(code_[:end])
-    if len(vertices) == 0:
-        1/0
-    vertices = vertices[..., [2, 1, 0]]
-    faces = torch.arange(1, len(vertices) + 1).view(-1, 3)
-    mesh = to_mesh(vertices, faces, transpose=False, post_process=True)
-    num_faces = len(mesh.faces)
-    mesh.export(f'{output_path}/{local_rank}_{i}_mesh_{end}.obj')
-
 @ torch.no_grad()
 def ar_sample_kvcache(gpt, prompt, pc, temperature=0.5, \
                         context_length=90000, window_size=9000,device='cuda',\
@@ -82,8 +61,6 @@ def ar_sample_kvcache(gpt, prompt, pc, temperature=0.5, \
             pbar.set_description(f"with start:{start},cur_pos:{cur_pos},length:{prompt_input.size(1)}")
             pbar.update(1)
 
-            # if cur_pos%2000 == 0:
-            #     codes2mesh(prompt,cur_pos,output_path,local_rank,i)
             for u in range(N):
                 if end_list[u] == 0:
                     if next_token[u] == torch.tensor([4737], device=device):
@@ -197,7 +174,6 @@ def get_model_answers(
                 faces = torch.arange(1, len(vertices) + 1).view(-1, 3)
                 mesh = to_mesh(vertices, faces, transpose=False, post_process=True)
                 mesh.export(f'{output_path}/{local_rank}_{i}_{u}_mesh.obj') 
-                        
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
