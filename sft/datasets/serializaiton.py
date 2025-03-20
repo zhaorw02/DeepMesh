@@ -169,7 +169,7 @@ def get_block_representation(
     
 
 
-def Improve_BPT_serialize(mesh: trimesh.Trimesh):
+def serialize(mesh: trimesh.Trimesh):
     # 1. patchify faces into patches
     sequence = patchified_mesh(mesh, special_token=-2)
     
@@ -230,7 +230,7 @@ def decode_block(sequence, compressed=True, patch_size=4, block_size=8, offset_s
     return coords
 
 
-def Improve_BPT_deserialize(sequence, patch_size=4, block_size=8, offset_size=16, compressed=True, special_token=-2, use_special_block=True):
+def deserialize(sequence, patch_size=4, block_size=8, offset_size=16, compressed=True, special_token=-2, use_special_block=True):
     # decode codes back to coordinates
    
     special_block_base = block_size**3 + offset_size**3 + patch_size**3
