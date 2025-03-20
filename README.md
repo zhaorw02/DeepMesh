@@ -37,7 +37,7 @@
 
 
 ## Release
-- [3/20] 🔥🔥We released the 0.5B version of **DeepMesh**.
+- [3/20] 🔥🔥We released the pretrained weight of **DeepMesh** (0.5 B).
 
 ## Contents
 - [Release](#release)
