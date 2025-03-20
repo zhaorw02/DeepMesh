@@ -102,7 +102,6 @@ Our code is based on these wonderful repos:
 * **[SMDM](https://github.com/ML-GSAI/SMDM)**
 * [Meshanything V2](https://github.com/buaacyw/MeshAnythingV2/tree/main)
 * [Michelangelo](https://github.com/NeuralCarver/Michelangelo)
-* [transformers](https://github.com/huggingface/transformers)
 
 ## BibTeX
 ```
