@@ -105,4 +105,13 @@ Our code is based on these wonderful repos:
 
 ## BibTeX
 ```
+@misc{zhao2025deepmeshautoregressiveartistmeshcreation,
+      title={DeepMesh: Auto-Regressive Artist-mesh Creation with Reinforcement Learning}, 
+      author={Ruowen Zhao and Junliang Ye and Zhengyi Wang and Guangce Liu and Yiwen Chen and Yikai Wang and Jun Zhu},
+      year={2025},
+      eprint={2503.15265},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2503.15265}, 
+}
 ```
