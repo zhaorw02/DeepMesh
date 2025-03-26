@@ -1,4 +1,4 @@
-CUDA_VISIBLE_DEVICES=0 torchrun --nproc-per-node=0 --master_port=12345 sample.py \
+CUDA_VISIBLE_DEVICES=0 torchrun --nproc-per-node=1 --master_port=12345 sample.py \
     --model_path "your_model_path" \
     --steps 120000 \
     --input_path examples \
