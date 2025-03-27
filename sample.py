@@ -141,38 +141,38 @@ def get_model_answers(
         os.makedirs(output_path, exist_ok=True)
     train_dataset    = Sample_Dataset(point_num = point_num,uid_list = uid_list,path=path)
     train_dataloader = build_dataloader_func(1,train_dataset, local_rank, world_size)
-    while True:
-        for i, test_batch in tqdm(enumerate(train_dataloader)):
-            cond_pc = test_batch['pc_normal'].to('cuda')
+    #while True:
+    for i, test_batch in tqdm(enumerate(train_dataloader)):
+        cond_pc = test_batch['pc_normal'].to('cuda')
+        
+        points = cond_pc[0].cpu().numpy()
+        point_cloud = trimesh.points.PointCloud(points[..., 0:3])
+        point_cloud.export(f'{output_path}/{local_rank}_{i}_pc.ply')
+        
+        output_ids, _ = ar_sample_kvcache(model,
+                                prompt = torch.tensor([[4736]]).to('cuda').repeat(repeat_num,1),
+                                pc = cond_pc.repeat(repeat_num,1,1),
+                                window_size=9000,
+                                temperature=temperature,
+                                context_length=steps,
+                                device='cuda',
+                                output_path=output_path,local_rank=local_rank,i=i)
+        for u in range(repeat_num):
+            code = output_ids[u][1:]
+            index = (code >= 4737).nonzero()
+            if index.numel() > 0:
+                code = code[:index[0, 0].item()].cpu().numpy().astype(np.int64)
+            else:
+                code = code.cpu()
+            vertices = deserialize(code)
+            if len(vertices) == 0:
+                print("you got:",len(vertices))
+                continue
+            vertices = vertices[..., [2, 1, 0]]
             
-            points = cond_pc[0].cpu().numpy()
-            point_cloud = trimesh.points.PointCloud(points[..., 0:3])
-            point_cloud.export(f'{output_path}/{local_rank}_{i}_pc.ply')
-            
-            output_ids, _ = ar_sample_kvcache(model,
-                                    prompt = torch.tensor([[4736]]).to('cuda').repeat(repeat_num,1),
-                                    pc = cond_pc.repeat(repeat_num,1,1),
-                                    window_size=9000,
-                                    temperature=temperature,
-                                    context_length=steps,
-                                    device='cuda',
-                                    output_path=output_path,local_rank=local_rank,i=i)
-            for u in range(repeat_num):
-                code = output_ids[u][1:]
-                index = (code >= 4737).nonzero()
-                if index.numel() > 0:
-                    code = code[:index[0, 0].item()].cpu().numpy().astype(np.int64)
-                else:
-                    code = code.cpu()
-                vertices = deserialize(code)
-                if len(vertices) == 0:
-                    print("you got:",len(vertices))
-                    continue
-                vertices = vertices[..., [2, 1, 0]]
-                
-                faces = torch.arange(1, len(vertices) + 1).view(-1, 3)
-                mesh = to_mesh(vertices, faces, transpose=False, post_process=True)
-                mesh.export(f'{output_path}/{local_rank}_{i}_{u}_mesh.obj') 
+            faces = torch.arange(1, len(vertices) + 1).view(-1, 3)
+            mesh = to_mesh(vertices, faces, transpose=False, post_process=True)
+            mesh.export(f'{output_path}/{local_rank}_{i}_{u}_mesh.obj') 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
