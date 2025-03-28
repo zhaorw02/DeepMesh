@@ -55,5 +55,17 @@ class Sample_Dataset(torch.utils.data.Dataset):
             if len(pc_normal)>self.point_num:
                 indices   = np.random.choice(len(pc_normal), self.point_num, replace=False)
             pc_normal     = pc_normal[indices]
+        elif self.uid_list[idx].split(".")[-1] == "npy":
+            # Load the .npy file which should have shape (N, 6)
+            pc_normal = np.load(f"{self.path}/{self.uid_list[idx]}")
+            # Ensure the data has the expected shape
+            if pc_normal.shape[1] != 6:
+                raise ValueError(f"Expected .npy file with shape (N, 6), but got shape {pc_normal.shape}")
+            # Reorder dimensions if needed to match the expected format [z,x,y,nz,nx,ny]
+            pc_normal = pc_normal[:, [2, 0, 1, 5, 3, 4]]
+            # Sample points if we have more than needed
+            if len(pc_normal) > self.point_num:
+                indices = np.random.choice(len(pc_normal), self.point_num, replace=False)
+                pc_normal = pc_normal[indices]
         data['pc_normal'] = torch.tensor(pc_normal)
         return data
