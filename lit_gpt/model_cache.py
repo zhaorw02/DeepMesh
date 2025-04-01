@@ -246,9 +246,9 @@ class GPTCache(nn.Module):
             cond_embeds = self.conditioner(pc = pc) #(bs,257,1024)
             cond_embeds = self.linear(cond_embeds) 
             cond_embeds = self.norm(cond_embeds)
-           
+            self.cond_embeds = cond_embeds
         else:
-            cond_embeds = None
+            cond_embeds = self.cond_embeds
                             
         x = self.transformer.h(x, max_seq_length, pc=cond_embeds, start=start, window_size=window_size, input_pos=input_pos)
         
