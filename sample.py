@@ -51,6 +51,7 @@ def ar_sample_kvcache(gpt, prompt, pc, temperature=0.5, \
                 input_pos    = torch.arange(cur_pos, dtype=torch.long, device=device)
                 prompt_input = prompt[:, start:cur_pos]
                 logits = gpt(prompt_input, pc=pc,start = start,window_size=window_size, input_pos=input_pos)[:, -1]
+                pc     = None
 
             logits_with_noise = add_gumbel_noise(logits, temperature)
             next_token = torch.argmax(logits_with_noise, dim=-1, keepdim=True)
