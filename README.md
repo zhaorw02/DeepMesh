@@ -62,6 +62,23 @@ git clone https://github.com/zhaorw02/DeepMesh.git && cd DeepMesh
 conda env create -f environment.yaml
 conda activate deepmesh
 ```
+or you can
+```
+conda create -n deepmesh python=3.12
+pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu121
+pip3 install -U xformers --index-url https://download.pytorch.org/whl/cu121
+git clone https://github.com/Dao-AILab/flash-attention
+cd flash-attention
+pip install packaging
+python setup.py install
+cd csrc/rotary && pip install .
+cd ../layer_norm && pip install .
+cd ../xentropy && pip install .
+cd ../../.. && rm -r flash-attention
+pip install trimesh beartype lightning safetensors open3d omegaconf sageattention triton scikit-image transformers
+conda activate deepmesh
+```
+
 2. Install the pretrained model weight
 ```
 pip install -U "huggingface_hub[cli]"
