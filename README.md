@@ -43,6 +43,7 @@
 
 ## Release
 - [3/20] 🔥🔥We released the pretrained weight of **DeepMesh** (0.5 B).
+- [4/01] 🔥We optimized the inference code, achieving a 50% reduction in generation time.
 
 ## Contents
 - [Release](#release)
