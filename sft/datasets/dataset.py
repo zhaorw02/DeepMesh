@@ -54,6 +54,6 @@ class Sample_Dataset(torch.utils.data.Dataset):
             pc_normal     = np.concatenate([np.asarray(p.points)[:,[2,0,1]],np.asarray(p.normals)[:,[2,0,1]]],axis=1)
             if len(pc_normal)>self.point_num:
                 indices   = np.random.choice(len(pc_normal), self.point_num, replace=False)
-            pc_normal     = pc_normal[indices]
+                pc_normal     = pc_normal[indices]
         data['pc_normal'] = torch.tensor(pc_normal)
         return data
