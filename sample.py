@@ -134,8 +134,6 @@ def get_model_answers(
         loaded_state = load_file(model_path)
     elif model_path.split(".")[-1]=="bin":
         loaded_state = torch.load(model_path, map_location='cpu',weights_only=False)
-    else:
-        loaded_state = get_fp32_state_dict_from_zero_checkpoint(model_path)
     model.load_state_dict(loaded_state, strict=False)
     model       = DDP(model, device_ids=[local_rank])
     if local_rank == 0:
