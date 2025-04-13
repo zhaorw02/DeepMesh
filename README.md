@@ -90,7 +90,6 @@ huggingface-cli download zzzrw/DeepMesh --local-dir ./
 ### Command line inference
 ```
 # Note: if you want to use your own point cloud, please make sure the normal is included.
-# The file format should be a .npy file with shape (N, 6), where N is the number of points. The first 3 columns are the coordinates, and the last 3 columns are the normal.
 
 # Generate all obj/ply in your folder
 CUDA_VISIBLE_DEVICES=0 torchrun --nproc-per-node=1 --master_port=12345 sample.py \
