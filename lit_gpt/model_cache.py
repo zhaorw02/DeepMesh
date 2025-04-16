@@ -1,6 +1,8 @@
 import math
 from typing import Any, List, Optional, Tuple
 
+from huggingface_hub import PyTorchModelHubMixin
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -166,7 +168,10 @@ class Hourglass(torch.nn.Module):
 
         return x
 
-class GPTCache(nn.Module):
+class GPTCache(nn.Module,
+               PyTorchModelHubMixin,
+               repo_id="https://github.com/zhaorw02/DeepMesh",
+               license="mit"):
     def __init__(self, config: Config) -> None:
         super().__init__()
         assert config.padded_vocab_size is not None
