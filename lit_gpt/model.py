@@ -198,27 +198,13 @@ class GPT(nn.Module):
             self.mask_cache = None
 
     def create_sliding_window_attention_mask(self,sequence_length=5000, window_size=1000) -> torch.Tensor:
-        """
-        创建滑动窗口的注意力掩码。
-        每个位置i只能关注[max(i - window_size + 1, 0), i]范围内的token。
-
-        参数:
-            sequence_length (int): 序列的总长度（例如5000）。
-            window_size (int): 注意力窗口的大小（例如1000）。
-
-        返回:
-            torch.Tensor: 注意力掩码，形状为 (1, 1, sequence_length, sequence_length)。
-                        值为True的位置表示可以关注，False表示不能关注。
-        """
-        # 创建一个空的掩码矩阵，初始化为False
+        
         mask = torch.zeros((sequence_length, sequence_length), dtype=torch.bool)
 
         for i in range(sequence_length):
-            # 每个位置只能关注它之前最多1000个token
             start_index = max(i - window_size + 1, 0)
-            mask[i, start_index:i+1] = 1  # 将从 start_index 到 i 的位置设为1，表示可以关注
-
-        # 调整形状以适应批次和头数
+            mask[i, start_index:i+1] = 1  
+            
         mask = mask.unsqueeze(0).unsqueeze(0)  # 形状: (1, 1, sequence_length, sequence_length)
         
         return mask
