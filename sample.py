@@ -138,10 +138,10 @@ def get_model_answers(
     model       = DDP(model, device_ids=[local_rank])
     if local_rank == 0:
         os.makedirs(output_path, exist_ok=True)
-    train_dataset    = Sample_Dataset(point_num = point_num,uid_list = uid_list,path=path)
-    train_dataloader = build_dataloader_func(1,train_dataset, local_rank, world_size)
+    dataset    = Sample_Dataset(point_num = point_num,uid_list = uid_list,path=path)
+    dataloader = build_dataloader_func(1, dataset, local_rank, world_size)
     
-    for i, test_batch in tqdm(enumerate(train_dataloader)):
+    for i, test_batch in tqdm(enumerate(dataloader)):
         cond_pc = test_batch['pc_normal'].to('cuda')
         
         points = cond_pc[0].cpu().numpy()
