@@ -50,8 +50,17 @@ class Sample_Dataset(torch.utils.data.Dataset):
             indices      = np.random.choice(50000, self.point_num, replace=False)
             pc_normal    = sample_pc(verts, faces, pc_num=50000, with_normal=True)[indices]
         elif self.uid_list[idx].split(".")[-1] == "ply":
-            p             = o3d.io.read_point_cloud(f"{self.path}/{self.uid_list[idx]}")
-            pc_normal     = np.concatenate([np.asarray(p.points)[:,[2,0,1]],np.asarray(p.normals)[:,[2,0,1]]],axis=1)
+            pc_path = f"{self.path}/{self.uid_list[idx]}"
+            points = trimesh.load(pc_path, pricess=False)
+    
+            pcd = o3d.geometry.PointCloud()
+            pcd.points = o3d.utility.Vector3dVector(points)
+            pcd.estimate_normals(search_param=o3d.geometry.KDTreeSearchParamKNN(knn=30))
+            pcd.orient_normals_consistent_tangent_plane(k=30)
+            points = np.asarray(pcd.points)
+            normals = np.asarray(pcd.normals)
+            pc_normal = np.concatenate([points, normals], axis=1)
+            
             if len(pc_normal)>self.point_num:
                 indices   = np.random.choice(len(pc_normal), self.point_num, replace=False)
                 pc_normal     = pc_normal[indices]
