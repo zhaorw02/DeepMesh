@@ -51,7 +51,7 @@ class Sample_Dataset(torch.utils.data.Dataset):
             pc_normal    = sample_pc(verts, faces, pc_num=50000, with_normal=True)[indices]
         elif self.uid_list[idx].split(".")[-1] == "ply":
             pc_path = f"{self.path}/{self.uid_list[idx]}"
-            points = trimesh.load(pc_path, pricess=False)
+            points = trimesh.load(pc_path, process=False)
     
             pcd = o3d.geometry.PointCloud()
             pcd.points = o3d.utility.Vector3dVector(points)
