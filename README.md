@@ -128,6 +128,7 @@ Our code is based on these wonderful repos:
 * [Meshanything V2](https://github.com/buaacyw/MeshAnythingV2/tree/main)
 * [Michelangelo](https://github.com/NeuralCarver/Michelangelo)
 
+Also we invite you to explore our latest work [ShapeLLM-Omni](https://github.com/JAMESYJL/ShapeLLM-Omni) —— a native multimodal LLM for 3D generation and understanding.
 ## BibTeX
 ```
 @article{zhao2025deepmesh,
