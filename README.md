@@ -65,6 +65,7 @@ conda activate deepmesh
 or you can create on CUDA 12.1.
 ```
 conda create -n deepmesh python=3.12
+conda activate deepmesh
 pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu121
 pip3 install -U xformers --index-url https://download.pytorch.org/whl/cu121
 git clone https://github.com/Dao-AILab/flash-attention
@@ -76,7 +77,6 @@ cd ../layer_norm && pip install .
 cd ../xentropy && pip install .
 cd ../../.. && rm -r flash-attention
 pip install trimesh beartype lightning safetensors open3d omegaconf sageattention triton scikit-image transformers
-conda activate deepmesh
 ```
 
 2. Install the pretrained model weight
@@ -123,8 +123,8 @@ bash sample.sh
 ## Acknowledgement
 Our code is based on these wonderful repos:
 * **[BPT](https://github.com/whaohan/bpt)**
-* **[LLaMA-Mesh](https://github.com/nv-tlabs/LLaMa-Mesh)**
 * **[SMDM](https://github.com/ML-GSAI/SMDM)**
+* [LLaMA-Mesh](https://github.com/nv-tlabs/LLaMa-Mesh)
 * [Meshanything V2](https://github.com/buaacyw/MeshAnythingV2/tree/main)
 * [Michelangelo](https://github.com/NeuralCarver/Michelangelo)
 
