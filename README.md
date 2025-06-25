@@ -122,7 +122,7 @@ bash sample.sh
 
 ## Acknowledgement
 Our code is based on these wonderful repos:
-* **[BPT](https://github.com/whaohan/bpt)**
+* **[BPT](https://github.com/Tencent-Hunyuan/bpt)**
 * **[SMDM](https://github.com/ML-GSAI/SMDM)**
 * [LLaMA-Mesh](https://github.com/nv-tlabs/LLaMa-Mesh)
 * [Meshanything V2](https://github.com/buaacyw/MeshAnythingV2/tree/main)
